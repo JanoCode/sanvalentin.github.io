@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ti amu💘</title>
+
+<link rel="icon" href="images/icono-panda.png">
+</head>
+
+<body style="
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#e6cfcf;
+    font-family:sans-serif;
+">
+<style>
+.btn {
+    background: #ffd6e7;
+    border: none;
+    padding: 12px 26px;
+    margin: 10px;
+    font-size: 18px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.btn:hover {
+    background: #ffc2db;
+    transform: translateY(-2px) scale(1.05);
+}
+
+.btn-si {
+    background: #c9f7d8;
+}
+
+.btn-si:hover {
+    background: #b2f0c7;
+}
+
+.btn-no {
+    background: #ffe0c2;
+}
+
+.btn-no:hover {
+    background: #ffd1a6;
+}
+</style>
+
+<audio id="bgAudio" src="music/music.mp3" loop></audio>
+
+<div id="app" style="text-align:center;"></div>
+
+<script>
+
+let intentoNo = 0;
+
+function pantalla0() {
+    app.innerHTML = `
+        <h1>Primero que nada... presiona el panda 👀</h1>
+        <img src="images/icono-panda.png" width="220"
+            style="cursor:pointer"
+            onclick="iniciar()">
+    `;
+    }
+
+    function iniciar() {
+    document.getElementById("bgAudio").play();
+    pantalla1();
+    }
+
+    function pantalla1() {
+    app.innerHTML = `
+        <img src="images/index.gif" width="350"><br>
+        <h2>¿Te gustaría ser mi san valentín? 💕</h2>
+        <button class="btn btn-si" onclick="si()">SI</button>
+        <button class="btn btn-no" onclick="no()">NO</button>
+    `;
+    }
+
+    function pantallaNo1() {
+    app.innerHTML = `
+        <img src="images/no1.gif" width="350"><br>
+        <h2>¿Lo preguntaré 1 vez más... te gustaría ser mi san valentín? 💕</h2>
+        <button class="btn btn-si" onclick="si()">SI</button>
+        <button class="btn btn-no" onclick="no()">NO</button>
+    `;
+    }
+
+    function pantallaNo2() {
+    app.innerHTML = `
+        <img src="images/no2.gif" width="350"><br>
+        <h2>No que muy brava? intenta decir que no de nuevo :P</h2>
+        <button class="btn btn-si" onclick="si()">SI</button>
+        <button class="btn btn-no" onmouseover="moverNo(this)">NO</button>
+    `;
+}
+
+    function pantallaSi() {
+    app.innerHTML = `
+        <img src="images/si.gif" width="350"><br>
+        <h2>Sabía que dirías que sí 💞💞<br>
+        mañana minecraft?? 🐭💙</h2>
+    `;
+    }
+
+    function si() {
+    pantallaSi();
+    }
+
+    function no() {
+    intentoNo++;
+
+    if (intentoNo === 1) pantallaNo1();
+    else pantallaNo2();
+    }
+
+    pantalla0();
+
+    function moverNo(btn) {
+    const maxX = window.innerWidth - btn.offsetWidth - 20;
+    const maxY = window.innerHeight - btn.offsetHeight - 20;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    btn.style.position = "fixed";
+    btn.style.left = x + "px";
+    btn.style.top = y + "px";
+}
+</script>
+
+</body>
+</html>
